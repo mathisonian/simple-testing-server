@@ -50,7 +50,7 @@ easy.
 
 Want a failure (500)? Try
 
-```POST http://localhost:<PORT>/success```
+```POST http://localhost:<PORT>/error```
 
 Those two response codes aren't good enough for you? Fine.
 
