@@ -18,16 +18,20 @@ and the backend api? Where are your api calls supposed to go before that server 
 Example Usage
 ---
 
+Start by spinning up the server using
+
+```sh
+python simple-testing-server.py --port <PORT>
+```
+
 ### GET
 
 Like JSON? Of course you do. Say you want to get some example json response from your server.
-You modeling some data, something like ```events```, for example,
+Suppose you're modeling some data, something like ```events```, for example, and do a little 
 
-then just spin up this server using 
+```GET http://localhost:<PORT>/events``` 
 
-```python simple-testing-server.py --port <PORT>```
-
-and do a little ```GET http://localhost:<PORT>/events``` action. This will return to you the contents of a 
+action. This will return to you the contents of a 
 file called ```events.json``` with proper headers. This file is up to you to create and place in the same folder as the python
 script.
 
