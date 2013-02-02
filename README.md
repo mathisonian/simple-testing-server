@@ -27,7 +27,7 @@ python simple-testing-server.py --port <PORT>
 ### GET
 
 Like JSON? Of course you do. Say you want to get some example json response from your server.
-Suppose you're modeling some data, something like ```events```, for example, and do a little 
+Suppose you're modeling some data in your app. Let's call an example model ```events```. Then do a little 
 
 ```GET http://localhost:<PORT>/events``` 
 
@@ -50,7 +50,7 @@ easy.
 
 Want a failure (500)? Try
 
-```POST http://localhost:<PORT>/success```
+```POST http://localhost:<PORT>/error```
 
 Those two response codes aren't good enough for you? Fine.
 
