@@ -4,6 +4,7 @@ from BaseHTTPServer import BaseHTTPRequestHandler
 
 
 PORT = 8003
+FILE_PREFIX = ""
 
 if __name__ == "__main__":
     try:
@@ -12,11 +13,16 @@ if __name__ == "__main__":
         parser = argparse.ArgumentParser(description='A simple fake server for testing your API client.')
         parser.add_argument('-p', '--port', type=int, dest="PORT",
                            help='the port to run the server on; defaults to 8003')
+        parser.add_argument('--path', type=str, dest="PATH",
+                           help='the folder to find the json files')
 
         args = parser.parse_args()
 
         if args.PORT:
             PORT = args.PORT
+        if args.PATH:
+            FILE_PREFIX = args.PATH
+
     except Exception:
         # Could not successfully import argparse or something
         pass
@@ -29,12 +35,12 @@ class JSONRequestHandler (BaseHTTPRequestHandler):
         #send response code:
         self.send_response(200)
         #send headers:
-        self.send_header("Content-type:", "application/json")
+        self.send_header("Content-type", "application/json")
         # send a blank line to end headers:
         self.wfile.write("\n")
 
         try:
-            output = open(self.path[1:] + ".json", 'r').read()
+            output = open(FILE_PREFIX + "/" + self.path[1:] + ".json", 'r').read()
         except Exception:
             output = "{'error': 'Could not find file " + self.path[1:] + ".json'" + "}"
         self.wfile.write(output)
