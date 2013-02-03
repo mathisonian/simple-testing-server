@@ -37,7 +37,7 @@ script.
 
 More generally, ```GET http://localhost:<PORT>/<model_name>``` will return an ```application/json``` response 
 with content taken from a file called ```<model_name>.json``` placed in the same folder as the script.
-BYO example json files.
+BYO example json files. (protip: use the ```--path``` options if these files are in a different directory)
 
 ### POST
 
@@ -58,6 +58,14 @@ Those two response codes aren't good enough for you? Fine.
 
 There you have it.
 
+Options
+---
+
+A list of command line options:
+
+* ```-h, --help``` - show a help message
+* ```-p <PORT>,  --port <PORT>``` - run on a custom port
+* ```--path <PATH>``` - keep your sample data in a custom path
 
 Compatibility
 ---
