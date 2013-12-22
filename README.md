@@ -13,8 +13,6 @@ So say you want to build some sort of app that connects to a client... great! So
 a cool project. But how are you going to deal with separating the development between the application logic
 and the backend api? Where are your api calls supposed to go before that server exists? Enter this project.
 
-![nahmsayin](http://4.bp.blogspot.com/-O8eUpIhq_Qs/TxzG47NqOHI/AAAAAAAADIw/Qp38AQeU7Jk/s640/namsayin.jpg)
-
 Example Usage
 ---
 
