@@ -9,9 +9,7 @@ Allows you to test json responses with the proper headers built in, and also cus
 Motivation
 ---
 
-So say you want to build some sort of app that connects to a client... great! Sounds like you are working on
-a cool project. But how are you going to deal with separating the development between the application logic
-and the backend api? Where are your api calls supposed to go before that server exists? Enter this project.
+So say you want to build some sort of app that connects to a client... great! But how are you going to deal with separating the development between the application logic and the backend api? Where are your api calls supposed to go before that server exists? Enter this project.
 
 Example Usage
 ---
@@ -24,27 +22,24 @@ python simple-testing-server.py --port <PORT>
 
 ### GET
 
-Like JSON? Of course you do. Say you want to get some example json response from your server.
-Suppose you're modeling some data in your app. Let's call an example model ```events```. Then do a little 
+This server uses json as the default object structe. Say you want to get an example json response from your server.
+Suppose you're modeling some data in your app. Let's call an example model ```events```. Then 
 
 ```GET http://localhost:<PORT>/events``` 
 
-action. This will return to you the contents of a 
+will return to you the contents of a 
 file called ```events.json``` with proper headers. This file is up to you to create and place in the same folder as the python
 script.
 
 More generally, ```GET http://localhost:<PORT>/<model_name>``` will return an ```application/json``` response 
 with content taken from a file called ```<model_name>.json``` placed in the same folder as the script.
-BYO example json files. (protip: use the ```--path``` options if these files are in a different directory)
+BYO example json files. (use the ```--path``` options if these files are in a different directory)
 
 ### POST
 
-Eventually you'll probably want to do some POST'ing. Don't worry, we've got you covered. Want to 
-try a post request with a successfull (200) response?
+To make a post request with a successfull (200) response:
 
 ```POST http://localhost:<PORT>/success```
-
-easy.
 
 Want a failure (500)? Try
 
