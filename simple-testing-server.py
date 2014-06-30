@@ -83,9 +83,6 @@ class JSONRequestHandler (BaseHTTPRequestHandler):
                                         first_key=False
                                     self.wfile.write('"%s":"%s"' % (field, form[field].value))
                             self.wfile.write('\n}')
-
-			    
-			    response_code = 201
 				
 			except Exception as e:
 			    response_code = 500
