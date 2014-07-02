@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 from BaseHTTPServer import HTTPServer
 from BaseHTTPServer import BaseHTTPRequestHandler
-import cgi
 
 
 PORT = 8003
@@ -48,46 +47,15 @@ class JSONRequestHandler (BaseHTTPRequestHandler):
 
     def do_POST(self):
         if self.path == "/success":
-            response_code = 200
             self.send_response(200)
         elif self.path == "/error":
-            response_code = 500
+            self.send_response(500)
         else:
             try:
                 response_code = int(self.path[1:])
             except Exception:
-                response_code = 201
-            
-        try:
+                    response_code = 500
             self.send_response(response_code)
-            self.wfile.write('Content-Type: application/json\n')
-            self.wfile.write('Client: %s\n' % str(self.client_address))
-            self.wfile.write('User-agent: %s\n' % str(self.headers['user-agent']))
-            self.wfile.write('Path: %s\n' % self.path)
-            
-            self.end_headers()
-
-
-            form = cgi.FieldStorage(
-                    fp=self.rfile, 
-                    headers=self.headers,
-                    environ={'REQUEST_METHOD':'POST',
-                                     'CONTENT_TYPE':self.headers['Content-Type'],
-                                     })
-
-            self.wfile.write('{\n')
-            first_key=True
-            for field in form.keys():
-                    if not first_key:
-                        self.wfile.write(',\n')
-                    else:
-                        self.wfile.write('\n')
-                        first_key=False
-                    self.wfile.write('"%s":"%s"' % (field, form[field].value))
-            self.wfile.write('\n}')
-                            
-        except Exception as e:
-            self.send_response(500)
 
 
 server = HTTPServer(("localhost", PORT), JSONRequestHandler)
