@@ -49,6 +49,22 @@ Those two response codes aren't good enough for you? Fine.
 
 ```POST http://localhost:<PORT>/<response_code>```
 
+The body accepts parameters in application/x-www-form-urlencoded format.
+
+Set Content-Type to application/x-www-form-urlencoded
+
+    POST http://localhost:<PORT>/any_url
+    p1=v1&p2=v2&p3=v3
+
+The result is parsed and returned back as JSON
+
+    {
+       "p2":"v2",
+       "p3":"v3",
+       "p1":"v1"
+    }
+
+
 There you have it.
 
 Options
