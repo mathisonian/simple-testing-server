@@ -49,7 +49,6 @@ class JSONRequestHandler (BaseHTTPRequestHandler):
     def do_POST(self):
         if self.path == "/success":
             response_code = 200
-            self.send_response(200)
         elif self.path == "/error":
             response_code = 500
         else:
