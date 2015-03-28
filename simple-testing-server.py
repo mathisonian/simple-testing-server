@@ -5,7 +5,7 @@ import cgi
 
 
 PORT = 8003
-FILE_PREFIX = ""
+FILE_PREFIX = "."
 
 if __name__ == "__main__":
     try:
