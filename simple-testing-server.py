@@ -38,7 +38,7 @@ class JSONRequestHandler (BaseHTTPRequestHandler):
         #send headers:
         self.send_header("Content-type", "application/json")
         # send a blank line to end headers:
-        self.wfile.write("\n")
+        self.wfile.write("\r\n")
 
         try:
             output = open(FILE_PREFIX + "/" + self.path[1:] + ".json", 'r').read()
@@ -56,19 +56,19 @@ class JSONRequestHandler (BaseHTTPRequestHandler):
                 response_code = int(self.path[1:])
             except Exception:
                 response_code = 201
-            
+
         try:
             self.send_response(response_code)
-            self.wfile.write('Content-Type: application/json\n')
-            self.wfile.write('Client: %s\n' % str(self.client_address))
-            self.wfile.write('User-agent: %s\n' % str(self.headers['user-agent']))
-            self.wfile.write('Path: %s\n' % self.path)
-            
+            self.wfile.write('Content-Type: application/json\r\n')
+            self.wfile.write('Client: %s\r\n' % str(self.client_address))
+            self.wfile.write('User-agent: %s\r\n' % str(self.headers['user-agent']))
+            self.wfile.write('Path: %s\r\n' % self.path)
+
             self.end_headers()
 
 
             form = cgi.FieldStorage(
-                    fp=self.rfile, 
+                    fp=self.rfile,
                     headers=self.headers,
                     environ={'REQUEST_METHOD':'POST',
                                      'CONTENT_TYPE':self.headers['Content-Type'],
@@ -84,7 +84,7 @@ class JSONRequestHandler (BaseHTTPRequestHandler):
                         first_key=False
                     self.wfile.write('"%s":"%s"' % (field, form[field].value))
             self.wfile.write('\n}')
-                            
+
         except Exception as e:
             self.send_response(500)
 
